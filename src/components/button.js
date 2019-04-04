@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Button extends Component {
   render() {
-    return(
+    return (
       <div
-      // Add additional attributes here
-        className='button'
+        // Add additional attributes here
+        id={this.props.sound}
+        className="button"
         onClick={this.props.playSound}
       >
-
         <p>{this.props.sound}</p>
-
       </div>
     );
   }

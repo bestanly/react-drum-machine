@@ -34,29 +34,43 @@ SUPER HARD BONUS CHALLENGE!!!!:
 
 */
 
-import React,   { Component } from 'react';
-import Button from './button.js';
-import Sounds from '../assets/sounds.js';
+import React, { Component } from "react";
+import Button from "./button.js";
+import Sounds from "../assets/sounds.js";
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       sounds: Object.keys(Sounds)
-    }
+    };
     this.playSound = this.playSound.bind(this);
   }
 
   playSound(eventObj) {
     //code to be run when click event is fired goes below this line!
-
+    // console.log(eventObj.currentTarget.id);
+    const sound = Sounds[eventObj.currentTarget.id];
+    sound.currentTime = 0;
+    sound.play();
   }
 
-  render(){
-
+  render() {
+    const sounds = [];
+    for (let i = 0; i < this.state.sounds.length; i++) {
+      sounds.push(
+        <Button
+          // id={this.props.sound}
+          key={i}
+          sound={this.state.sounds[i]}
+          playSound={this.playSound}
+        />
+      );
+    }
     return (
-      <div className='button-container'>
-      {/* Components that need to be returned from App go below here ! */}
+      <div className="button-container">
+        {/* Components that need to be returned from App go below here ! */}
+        {sounds}
       </div>
     );
   }
